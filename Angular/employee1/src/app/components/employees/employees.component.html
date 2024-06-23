@@ -1,0 +1,144 @@
+<div>
+    <div class="container">
+      <div class="container">
+        <input type="radio" class="btn-check" name="templete" id="option5" value="allEmployee" autocomplete="off" [(ngModel)]="templete" (click)="show()">
+        <label class="btn" for="option5">All Employee</label>
+
+        <input type="radio" class="btn-check" name="templete" id="option6" value="newEmployee" autocomplete="off" [(ngModel)]="templete">
+        <label class="btn" for="option6">Add New Employee</label>
+
+        <input type="radio" class="btn-check" name="templete" id="voucherBoard" value="voucherBoard" autocomplete="off" [(ngModel)]="templete">
+        <label class="btn" for="voucherBoard">Voucher Board</label>
+        
+        <!-- <input type="radio" class="btn-check" name="options-base" id="option8" autocomplete="off">
+        <label class="btn" for="option8">Radio</label> -->
+    </div>
+
+    <!-- --------------------------------All Employee -->
+    <ng-template [ngIf]="templete=='allEmployee'">
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Department</th>
+              <th scope="col">Designation</th>
+              <th scope="col">Joining Date</th>
+              <th scope="col">Salary</th>
+              <th scope="col">Address</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of allemployees">
+              <th scope="row">{{i.employeeId}}</th>
+              <td>{{i.name}}</td>
+              <td>{{i.email}}</td>
+              <td>{{i.phoneNo}}</td>
+              <td>{{i.departmentId}}</td>
+              <td>{{i.roleId}}</td>
+              <td>{{i.dateOfJoining}}</td>
+              <td>{{i.salary}}</td>
+              <td>{{i.address}}</td>
+              <td>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+
+    <!-- ---------------------------------Create New Employee------------------------------------------ -->
+
+    <ng-template [ngIf]="templete=='newEmployee'">
+      <div>
+        <form (ngSubmit)="addNewEmployee()">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
+              </div>
+              <div class="mb-3">
+                <label for="phoneNo" class="form-label">Phone No</label>
+                <input type="text" class="form-control" id="phoneNo" name="phoneNo" [(ngModel)]="phoneNo">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Role </label>
+                <select class="form-select" aria-label="Default select example"  #dd (change)="changeRole(dd.value)">
+                  <option>Select Role</option>
+                  <option *ngFor="let i of role; let z=index;"  [value]="z"> {{i.roleName | titlecase}} </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="salary" class="form-label">Basic Salary</label>
+                <input type="number" class="form-control" id="salary" name="salary" [(ngModel)]="salary">
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Department</label>
+                <select class="form-select" aria-label="Default select example" #bb (change)="changeDepartment(bb.value)">
+                  <option selected>Select Departments</option>
+                  <option *ngFor="let i of departments; let z=index;"  [value]="z">{{i.departmentName | uppercase}}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="dateOfJoining" class="form-label">Joining Date</label>
+                <input type="date" class="form-control" id="dateOfJoining" name="dateOfJoining" [(ngModel)]="dateOfJoining">
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" [(ngModel)]="address">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="templete=='voucherBoard'">
+      <div class="my-5">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Voucher Number</th>
+                      <th>Heading</th>
+                      <th>Description</th>
+                      <th>Ammount</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let i of allrequestedVouchers">
+                      <td> {{i.voucherNumber}} </td>
+                      <td>{{i.heading}}</td>
+                      <td>{{i.description}}</td>
+                      <td>{{i.ammount}}</td>
+                      <td>{{i.status}}</td>
+                      <td>
+                        <button type="submit" class="btn btn-outline-primary me-3">Accept</button>
+                        <button type="submit" class="btn btn-outline-danger">Reject</button>
+                      </td>
+                  </tr>
+                  
+              </tbody>
+          </table>
+         
+      </div>
+  </ng-template>
+
+        
+    </div>
+</div>

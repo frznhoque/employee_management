@@ -1,0 +1,116 @@
+<div>
+    <div>
+        <input type="radio" class="btn-check" name="templete" id="1" autocomplete="off" checked value="voucher" [(ngModel)]="templete">
+        <label class="btn btn-outline-success me-2" for="1">Voucher</label>
+
+        <!-- <input type="radio" class="btn-check" name="templete" id="2" autocomplete="off" value="Accounts" [(ngModel)]="templete">
+        <label class="btn btn-outline-success me-2" for="2">My Accounts</label> -->
+
+        <input type="radio" class="btn-check" name="templete" id="3" autocomplete="off" value="Notice" [(ngModel)]="templete">
+        <label class="btn btn-outline-success me-2" for="3">Notice</label>
+    </div>
+    <ng-template [ngIf]="templete=='voucher'">
+        <div class="my-5">
+            <input type="radio" class="btn-check" name="voucher" id="1.1" autocomplete="off" checked value="voucher" [(ngModel)]="voucher">
+            <label class="btn btn-outline-success me-2" for="1.1">Add Voucher</label>
+
+            <input type="radio" class="btn-check" name="voucher" id="2.1" autocomplete="off" value="All Voucher" [(ngModel)]="voucher">
+            <label class="btn btn-outline-success me-2" for="2.1" (click)="allVoucher()">All Voucher</label>
+            <div>
+                <ng-template [ngIf]="voucher=='voucher'">
+                    <div>
+                        <form class="w-50 p-2 my-3 rounded" style="background-color: gray; color: white;" >
+                            <div class="mb-3">
+                              <label for="voucher-head" class="form-label">Voucher Head</label>
+                              <input type="text" class="form-control" id="voucher-head" name="voucherHead" [(ngModel)]="voucherHead">
+                            </div>
+                            <div class="mb-3">
+                              <label for="Description" class="form-label">Description</label>
+                              <input type="text" class="form-control" id="Description" style="height: 5rem;" name="voucherBody" [(ngModel)]="voucherBody">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Ammount" class="form-label">Ammount</label>
+                                <input type="text" class="form-control" id="Ammount" name="ammount" [(ngModel)]="ammount">
+                              </div>
+                            <button type="submit" class="btn btn-primary" (click)="addvoucher()">Submit</button>
+                          </form>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="voucher=='All Voucher'">
+                    <div class="my-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Voucher Number</th>
+                                    <th>Heading</th>
+                                    <th>Description</th>
+                                    <th>Ammount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let i of allrequestedVoucher">
+                                    <td> {{i.voucherNumber}} </td>
+                                    <td>{{i.heading}}</td>
+                                    <td>{{i.description}}</td>
+                                    <td>{{i.ammount}}</td>
+                                    <td>{{i.status}}</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template [ngIf]="templete=='Accounts'">
+        <div>
+
+        </div>
+    </ng-template>
+    <ng-template [ngIf]="templete=='Notice'">
+        <div style=padding:20px>
+            <h2>
+                Notice For Employee
+            </h2>
+            <div>
+                <h5>
+                   
+                    
+                    
+                    <p>Date</p>
+                    
+                   <p> Dear Team,</p>
+                    
+                   <p> Subject: Implementation of New Employee Management System</p>
+                    
+                   <p> I hope this message finds you well. We are excited to announce the upcoming implementation of our new Employee Management System (EMS) which is set to revolutionize our workflow and enhance efficiency across all departments.
+                    
+                    The EMS project aims to streamline various aspects of employee management including but not limited to:</p>
+                    
+                   <p> Attendance Tracking: Real-time monitoring of employee attendance, allowing for better scheduling and resource allocation.
+                    Leave Management: Simplified leave application and approval process, ensuring smooth workflow and adequate staffing.
+                    Performance Evaluation: Centralized system for performance tracking, enabling fair assessments and recognition of employee achievements.
+                    Task Assignment: Efficient assignment and tracking of tasks, promoting collaboration and accountability within teams.
+                    Data Security: Robust security measures to safeguard sensitive employee information and maintain compliance with data protection regulations.
+                    To ensure a seamless transition, a dedicated team has been working tirelessly on the development and testing of the EMS. Training sessions will be conducted prior to the official launch to familiarize all employees with the new system and address any queries or concerns.</p>
+                    
+                   <p> We anticipate that the EMS will significantly improve our operational efficiency and empower us to better serve our clients and achieve our organizational goals. Your cooperation and support throughout this transition period are greatly appreciated.</p>
+                    
+                    <p>Should you have any questions or require further information, please do not hesitate to reach out to the project team.</p>
+                    
+                   <p> Thank you for your continued dedication and commitment to.</p>
+                    
+                   <p> Best regards,</p>
+                    
+                   <p> [Name]</p>
+                   <p> [Position]</p>
+                  <p>  [Contact Information]</p>
+                    
+                    </h5>
+            </div>
+        </div>
+    </ng-template>
+</div>

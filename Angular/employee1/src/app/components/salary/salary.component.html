@@ -1,0 +1,184 @@
+<div>
+    <div class="container">
+        <input type="radio" class="btn-check" name="templete" id="option5" value="EmposeMonthYear" autocomplete="off"
+            [(ngModel)]="templete" >
+        <label class="btn btn-outline-primary" for="option5">Empose Salary</label>
+
+        <input type="radio" class="btn-check" name="templete" id="option6" value="salaryReport" autocomplete="off"
+            [(ngModel)]="templete">
+        <label class="btn btn-outline-success ms-2" for="option6">Salary Report</label>
+    </div>
+    <ng-template [ngIf]="templete=='EmposeMonthYear'">
+        <div>
+            <div class="row">
+              <div class="col-sm-2">
+                <select class="form-select my-5" aria-label="Default select example"  name="year" [(ngModel)]="year">
+                  <option  selected>Select Year</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                  <option value="2031">2031</option>
+                  <option value="2032">2032</option>
+                </select>
+
+              </div> 
+              <div class="col-sm-2">
+                <select class="form-select my-5" aria-label="Default select example"  name="year" [(ngModel)]="month">
+                  <option  selected>Select Month</option>
+                  <option value="Jan">Jan</option>
+                  <option value="Feb">Feb</option>
+                  <option value="Mar">Mar</option>
+                  <option value="Apr">Apr</option>
+                  <option value="May">May</option>
+                  <option value="Jun">Jun</option>
+                  <option value="Jul">Jul</option>
+                  <option value="Aug">Aug</option>
+                  <option value="Sep">Sep</option>
+                  <option value="Oct">Oct</option>
+                  <option value="Nov">Nov</option>
+                  <option value="Dec">Dec</option>
+                  
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+           
+                <input type="date" class="form-control mt-5" id="exampleInputEmail1" name="emposeDate"
+                  [(ngModel)]="emposeDate">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary me-3" (click)="salaryEmpose()">Empose Salary</button>
+            <button type="submit" class="btn btn-primary">View All Empose Salary</button>
+        </div>
+    </ng-template>
+    <!-- <ng-template [ngIf]="monthtemplete=='allEmployeeList'">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Employee Id</th>
+            <th scope="col">First</th>
+            <th scope="col">House Announce</th>
+            <th scope="col">Communication Bill</th>
+            <th scope="col">transport Bill</th>
+            <th scope="col">medical Announce</th>
+            <th scope="col">Day of Leave</th>
+            <th scope="col">Not to Pay</th>
+            <th scope="col">Bonous</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>
+              <div class="mb-3">
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+            </div>
+          </td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </ng-template> -->
+    <ng-template [ngIf]="templete=='salaryReport'">
+      <div>
+        <div class="row">
+          <div class="col-sm-2">
+            <select class="form-select my-5" aria-label="Default select example"  name="year" [(ngModel)]="year">
+              <option  selected>Select Year</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+            </select>
+
+          </div> 
+          <div class="col-sm-2">
+            <select class="form-select my-5" aria-label="Default select example"  name="year" [(ngModel)]="month">
+              <option  selected>Select Month</option>
+              <option value="Jan">Jan</option>
+              <option value="Feb">Feb</option>
+              <option value="Mar">Mar</option>
+              <option value="Apr">Apr</option>
+              <option value="May">May</option>
+              <option value="Jun">Jun</option>
+              <option value="Jul">Jul</option>
+              <option value="Aug">Aug</option>
+              <option value="Sep">Sep</option>
+              <option value="Oct">Oct</option>
+              <option value="Nov">Nov</option>
+              <option value="Dec">Dec</option>
+              
+            </select>
+
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-outline-success mt-5" (click)="searchSalary()">Open Salary Sheet</button>
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-outline-success me-3 mt-5" (click)="printsalary()">Print</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+                <tr >
+                  <th scope="col" style="width: 10rem;">Employee Id</th>
+                  <th scope="col" style="width: 10rem;">Month</th>
+                  <th scope="col" style="width: 10rem;">Year</th>
+                  <th scope="col" style="width: 10rem;">Basic</th>
+                  <th scope="col" style="width: 10rem;">House 12%</th>
+                  <th scope="col" style="width: 10rem;">Communication 5%</th>
+                  <th scope="col" style="width: 10rem;">Transport 5%</th>
+                  <!-- <th scope="col" style="width: 10rem;">Transport 5%</th> -->
+                  <th scope="col" style="width: 10rem;">medical 3%</th>
+                  <th scope="col" style="width: 10rem;">Total Absent</th>
+                  <th scope="col" style="width: 10rem;">Absent Ammount</th>
+                  <th scope="col" style="width: 10rem;">Bonous</th>
+                  <th scope="col" style="width: 10rem;">Total Salary</th>
+                  <th scope="col" style="width: 10rem;">Empose Date</th>
+                  
+                </tr>
+              </thead>
+          <tbody>
+            <tr *ngFor="let i of allSalary">
+              <th scope="row">{{i.employeeId}}</th>
+              <td> {{i.month}} </td>
+              <td> {{i.year}} </td>
+              <td> {{i.basic | number: '.0-2'}} </td>
+              <td> {{i.house | number: '.0-2'}} </td>
+              <td> {{i.communication | number: '.0-2'}} </td>
+              <td> {{i.transport | number: '.0-2'}} </td>
+              <td> {{i.medical | number: '.0-2'}} </td>
+              <td> {{i.leave}} </td>
+              <td> {{i.leaveNotPay | number: '.0-2'}} </td>
+              <td> {{i.bonous | number: '.0-2'}} </td>
+              <td> {{i.total | number: '.0-2'}} </td>
+              <td> {{i.emposeDate}} </td>
+              <!-- <td> {{i.total}} </td> -->
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      
+  
+      </ng-template>
+</div>

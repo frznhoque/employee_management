@@ -1,0 +1,46 @@
+<div class="me-auto ms-auto">
+    <div class="mx-3 mt-5 col-sm-11 me-auto ms-auto">
+        <span class="ms-5">Month: {{month | titlecase}}</span><br>
+        <span class="ms-5">Year: {{year | titlecase}}</span><br>
+
+        <table class="table table-striped ">
+            <thead>
+                  <tr class="text-center">
+                    <th scope="col" style="width: 10rem;">Employee Id</th>
+                    <!-- <th scope="col" style="width: 10rem;">Month</th>
+                    <th scope="col" style="width: 10rem;">Year</th> -->
+                    <th scope="col" style="width: 10rem;">Basic</th>
+                    <th scope="col" style="width: 10rem;">House 12%</th>
+                    <th scope="col" style="width: 10rem;">Communication 5%</th>
+                    <th scope="col" style="width: 10rem;">Transport 5%</th>
+                    <!-- <th scope="col" style="width: 10rem;">Transport 5%</th> -->
+                    <th scope="col" style="width: 10rem;">medical 3%</th>
+                    <th scope="col" style="width: 10rem;">Total Leave</th>
+                    <th scope="col" style="width: 10rem;">Leave Ammount</th>
+                    <th scope="col" style="width: 10rem;">Bonous</th>
+                    <th scope="col" style="width: 10rem;">Total Salary</th>
+                    <th scope="col" style="width: 10rem;">Empose Date</th>
+                    
+                  </tr>
+                </thead>
+            <tbody>
+              <tr *ngFor="let i of allSalary" class="text-center">
+                <th scope="row">{{i.employeeId}}</th>
+                <!-- <td> {{i.month}} </td>
+                <td> {{i.year}} </td> -->
+                <td> {{i.basic | number: '.0-2'}} </td>
+                <td> {{i.house | number: '.0-2'}} </td>
+                <td> {{i.communication | number: '.0-2'}} </td>
+                <td> {{i.transport | number: '.0-2'}} </td>
+                <td> {{i.medical | number: '.0-2'}} </td>
+                <td> {{i.leave}} </td>
+                <td> {{i.leaveNotPay | number: '.0-2'}} </td>
+                <td> {{i.bonous | number: '.0-2'}} </td>
+                <td> {{i.total | number: '.0-2'}} </td>
+                <td> {{i.emposeDate}} </td>
+                <!-- <td> {{i.total}} </td> -->
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

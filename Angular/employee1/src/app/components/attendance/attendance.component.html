@@ -1,0 +1,181 @@
+<div>
+  <div class="container">
+    <input type="radio" class="btn-check" name="templete" id="option5" value="allEmployee" autocomplete="off"
+      [(ngModel)]="templete" (click)="show()">
+    <label class="btn btn-outline-primary" for="option5">Attendance</label>
+
+    <input type="radio" class="btn-check" name="templete" id="option6" value="attendanceReport" autocomplete="off"
+      [(ngModel)]="templete">
+    <label class="btn btn-outline-success ms-2" for="option6">Report</label>
+  </div>
+  <ng-template [ngIf]="templete=='allEmployee'">
+    <div>
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="my-3">
+           
+            <input type="date" class="form-control" id="exampleInputEmail1" name="attendanceDate"
+              [(ngModel)]="attendanceDate">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-outline-success my-3" (click)="checkDate()">check date</button>
+        </div>
+      </div>
+      <table class="table">
+        <!-- <thead>
+              <tr>
+                <th scope="col">Department Id</th>
+                <th scope="col">Department Name</th>
+                
+              </tr>
+            </thead> -->
+        <tbody>
+          <tr *ngFor="let i of allemployee">
+            <th scope="row">{{i.employeeId}} : {{i.name}}</th>
+            <td>
+            
+              <input type="radio" class="btn-check" name="{{i.employeeId}}" id="{{i.employeeId}}a" autocomplete="off" value="A" > 
+                  <label class="btn btn-outline-danger me-2"  for="{{i.employeeId}}a" (click)="makeAttendance(i.employeeId,'A')">Absent</label>
+                  
+                  <input type="radio" class="btn-check" name="{{i.employeeId}}" id="{{i.employeeId}}b" autocomplete="off" value="L" >
+                  <label class="btn btn-outline-warning me-2" for="{{i.employeeId}}b" (click)="makeAttendance(i.employeeId,'L')">Leave</label>
+                  
+                  
+                  <input type="radio" class="btn-check" name="{{i.employeeId}}" id="{{i.employeeId}}c" autocomplete="off" value="P" >
+                  <label class="btn btn-outline-primary me-2" for="{{i.employeeId}}c" (click)="makeAttendance(i.employeeId,'P')">Present</label>
+              
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="templete=='attendanceReport'">
+        <form (ngSubmit)="report()">
+          <div class="row">
+            <div class="col-sm-2">
+              <select class="form-select my-5" aria-label="Default select example"  name="reportyear" [(ngModel)]="reportyear">
+                <option  selected>Select Year</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+              </select>
+
+            </div> 
+            <div class="col-sm-2">
+              <select class="form-select my-5" aria-label="Default select example"  name="reportMonth" [(ngModel)]="reportMonth">
+                <option  selected>Select Month</option>
+                <option value="jan">Jan</option>
+                <option value="feb">Feb</option>
+                <option value="mar">Mar</option>
+                <option value="apr">Apr</option>
+                <option value="may">May</option>
+                <option value="jun">Jun</option>
+                <option value="jul">Jul</option>
+                <option value="aug">Aug</option>
+                <option value="sep">Sep</option>
+                <option value="oct">Oct</option>
+                <option value="nov">Nov</option>
+                <option value="dec">Dec</option>
+                
+              </select>
+              
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-outline-primary mt-5" >Submit</button>
+            </div>
+            
+            
+          </div>
+          </form>
+    </ng-template>
+    <ng-template [ngIf]="templete=='attendanceFinalReport'">
+      <div class="col-sm-2">
+        <button  class="btn btn-outline-primary mt-5 " (click)="print()">Print</button>
+      </div>
+      <table class="table">
+        <thead>
+              <tr>
+                <th scope="col">Employee Id</th>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">4</th>
+                <th scope="col">5</th>
+                <th scope="col">6</th>
+                <th scope="col">7</th>
+                <th scope="col">8</th>
+                <th scope="col">9</th>
+                <th scope="col">10</th>
+                <th scope="col">11</th>
+                <th scope="col">12</th>
+                <th scope="col">13</th>
+                <th scope="col">14</th>
+                <th scope="col">15</th>
+                <th scope="col">16</th>
+                <th scope="col">17</th>
+                <th scope="col">18</th>
+                <th scope="col">19</th>
+                <th scope="col">20</th>
+                <th scope="col">21</th>
+                <th scope="col">22</th>
+                <th scope="col">23</th>
+                <th scope="col">24</th>
+                <th scope="col">25</th>
+                <th scope="col">26</th>
+                <th scope="col">27</th>
+                <th scope="col">28</th>
+                <th scope="col">29</th>
+                <th scope="col">30</th>
+                <th scope="col">31</th>
+                
+              </tr>
+            </thead>
+        <tbody>
+          <tr *ngFor="let i of attendanceReport">
+            <th scope="row">{{i.employeename}}</th>
+            <td> {{i.a01}} </td>
+            <td> {{i.a02}} </td>
+            <td> {{i.a03}} </td>
+            <td> {{i.a04}} </td>
+            <td> {{i.a05}} </td>
+            <td> {{i.a06}} </td>
+            <td> {{i.a07}} </td>
+            <td> {{i.a08}} </td>
+            <td> {{i.a09}} </td>
+            <td> {{i.a10}} </td>
+            <td> {{i.a11}} </td>
+            <td> {{i.a12}} </td>
+            <td> {{i.a13}} </td>
+            <td> {{i.a14}} </td>
+            <td> {{i.a15}} </td>
+            <td> {{i.a16}} </td>
+            <td> {{i.a17}} </td>
+            <td> {{i.a18}} </td>
+            <td> {{i.a19}} </td>
+            <td> {{i.a20}} </td>
+            <td> {{i.a21}} </td>
+            <td> {{i.a22}} </td>
+            <td> {{i.a23}} </td>
+            <td> {{i.a24}} </td>
+            <td> {{i.a25}} </td>
+            <td> {{i.a26}} </td>
+            <td> {{i.a27}} </td>
+            <td> {{i.a28}} </td>
+            <td> {{i.a29}} </td>
+            <td> {{i.a30}} </td>
+            <td> {{i.a31}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+</div>
