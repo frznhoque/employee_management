@@ -1,0 +1,25 @@
+    <div>
+        <div>
+            <div>
+                <form (ngSubmit)="leaveRequest()">
+                  <div class="mb-3">
+                    <label for="employeeid" class="form-label">Employee Id</label>
+                    <input type="text" class="form-control" id="employeeid" name="employeeid" [(ngModel)]="employeeid">
+                  </div>
+                    <div class="mb-3">
+                      <label for="fromDate" class="form-label">From</label>
+                      <input type="date" class="form-control" id="fromDate" name="fromDate" [(ngModel)]="fromDate">
+                    </div>
+                    <div class="mb-3">
+                      <label for="toDate" class="form-label">To</label>
+                      <input type="date" class="form-control" id="toDate" name="toDate" [(ngModel)]="toDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" placeholder="Describe here" id="description" name="description" [(ngModel)]="description"></textarea>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>

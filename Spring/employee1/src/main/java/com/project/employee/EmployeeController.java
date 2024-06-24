@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.employee.Repository.salary_Repository;
+//import com.project.employee.Repository.salary_Repository;
 
 @RestController
 //@RequestMapping("/api/employees")
@@ -30,8 +30,8 @@ public class EmployeeController {
 //	@Autowired
 //	private RoleRepo roleRepo;
 	
-	@Autowired
-	private salary_Repository repo;
+//	@Autowired
+//	private salary_Repository repo;
 	
 	
 	
@@ -156,4 +156,38 @@ public class EmployeeController {
 			System.out.println("controller");
 			return da.employeeSalary(month,year);
 		}
+		
+		
+		
+		
+		//-----------------------------------leave request-----------------------------------------
+		
+		@PostMapping("/leave-requests")
+		public void saveLeaveRequest(@RequestBody LeaveRequest v) {
+			System.out.println("Leave Request Controller works");
+			LeaveRequestDA da=new LeaveRequestDA();
+			da.leaveRequest(v);
+		}
+		
+		//--------------------------------------all leave request-----------------------------------
+		
+		@GetMapping("/allrequestleave")
+		public List<LeaveRequest> allLeaveRequest() {
+			LeaveRequestDA da= new LeaveRequestDA(); 
+			System.out.println("controller");
+			return da.allRequestList();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }

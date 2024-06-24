@@ -1,0 +1,33 @@
+<div>
+    <div>
+      {{allrequest|json}}
+        <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Employee Id</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--  constructor(requestId:any, fromDate:any,toDate:any,requestDate:any,description:any,status:any,employeeId:any) -->
+                  <tr *ngFor="let i of allrequest">
+                    <th scope="row">{{i.employeeId}}</th>
+                    <td>{{i.fromDate}}</td>
+                    <td>{{i.toDate}}</td>
+                    <td>{{i.description}}</td>
+                    <td>{{i.status}}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success me-2">Accept</button>
+                        <button type="button" class="btn btn-outline-danger">Reject</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

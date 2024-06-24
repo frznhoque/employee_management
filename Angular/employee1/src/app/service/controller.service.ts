@@ -9,6 +9,7 @@ import { Attendance } from '../Model/attendance';
 import { Salary } from '../Model/salary';
 import { SalaryEmpose } from '../Model/salary-empose';
 import { Voucher } from '../Model/voucher';
+import { Leave } from '../Model/leave';
 
 @Injectable({
   providedIn: 'root'
@@ -119,4 +120,34 @@ public allSalarybyMonth(month:any,year:any):Observable<SalaryEmpose>{
   this.url="http://localhost:8080/salarybymonthyear/"+month+"/"+year;
   return this.http.get<SalaryEmpose>(this.url);
 }
+
+
+//_____________________________________leave application_____________________________________
+
+public leaveRequest(v:any):Observable<Leave>{
+  this.url="http://localhost:8080/leave-requests";
+  return this.http.post<Leave>(this.url,v);
+}
+
+
+//------------------------------------all leave application ----------------------------------------
+public allleaveapplication():Observable<Leave>{
+  this.url="http://localhost:8080/allrequestleave";
+  return this.http.get<Leave>(this.url);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

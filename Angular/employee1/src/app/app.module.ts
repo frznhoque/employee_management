@@ -20,6 +20,8 @@ import { VoucherComponent } from './components/employee/voucher/voucher.componen
 import { PrintSalaryComponent } from './components/salary/print-salary/print-salary.component';
 import { PrintAttendanceComponent } from './components/attendance/print-attendance/print-attendance.component';
 import { NoticeComponent } from './notice/notice.component';
+import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
+import { LeaveRequestsComponent } from './components/admin/leave-requests/leave-requests.component';
 
 
 
@@ -40,6 +42,8 @@ import { NoticeComponent } from './notice/notice.component';
     PrintSalaryComponent,
     PrintAttendanceComponent,
     NoticeComponent,
+    LeaveRequestComponent,
+    LeaveRequestsComponent,
    
   ],
   imports: [

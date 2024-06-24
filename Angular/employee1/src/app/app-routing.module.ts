@@ -12,6 +12,9 @@ import { EdashboardComponent } from './components/employee/edashboard/edashboard
 import { VoucherComponent } from './components/employee/voucher/voucher.component';
 import { PrintSalaryComponent } from './components/salary/print-salary/print-salary.component';
 import { PrintAttendanceComponent } from './components/attendance/print-attendance/print-attendance.component';
+import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
+import { LeaveRequestsComponent } from './components/admin/leave-requests/leave-requests.component';
+
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -22,13 +25,15 @@ const routes: Routes = [
       {path:'departments',component:DepartmentsComponent},
       {path:'staffAttendance',component:AttendanceComponent},
       {path:'salary',component:SalaryComponent},
+      {path:'all-leave-request',component:LeaveRequestsComponent},
      
     ]
   },
   {path:'employee',component:EmployeeComponent,
     children:[
       {path:'',component:EdashboardComponent},
-      {path:'voucher',component:VoucherComponent}
+      {path:'voucher',component:VoucherComponent},
+      {path:'leave-request',component:LeaveRequestComponent},
     ]
   },
   {path:'printsalary',component:PrintSalaryComponent},
