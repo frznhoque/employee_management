@@ -22,6 +22,8 @@ import { PrintAttendanceComponent } from './components/attendance/print-attendan
 import { NoticeComponent } from './notice/notice.component';
 import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
 import { LeaveRequestsComponent } from './components/admin/leave-requests/leave-requests.component';
+import { LeaveRequestStatusComponent } from './components/admin/leave-request-status/leave-request-status.component';
+import { EmployeeLeaveRequestStatusComponent } from './components/employee-leave-request-status/employee-leave-request-status.component';
 
 
 
@@ -44,6 +46,8 @@ import { LeaveRequestsComponent } from './components/admin/leave-requests/leave-
     NoticeComponent,
     LeaveRequestComponent,
     LeaveRequestsComponent,
+    LeaveRequestStatusComponent,
+    EmployeeLeaveRequestStatusComponent,
    
   ],
   imports: [

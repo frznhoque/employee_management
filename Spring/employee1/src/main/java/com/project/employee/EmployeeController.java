@@ -164,7 +164,6 @@ public class EmployeeController {
 		
 		@PostMapping("/leave-requests")
 		public void saveLeaveRequest(@RequestBody LeaveRequest v) {
-			System.out.println("Leave Request Controller works");
 			LeaveRequestDA da=new LeaveRequestDA();
 			da.leaveRequest(v);
 		}
@@ -174,9 +173,24 @@ public class EmployeeController {
 		@GetMapping("/allrequestleave")
 		public List<LeaveRequest> allLeaveRequest() {
 			LeaveRequestDA da= new LeaveRequestDA(); 
-			System.out.println("controller");
 			return da.allRequestList();
 		}
+		
+		//all request list status
+		@GetMapping("/allrequestleavestatus")
+		public List<LeaveRequest> allLeaveRequestStatus() {
+			LeaveRequestDA da= new LeaveRequestDA(); 
+			return da.allRequestListstatus();
+		}
+		
+		//-------------------------------------- leave reject-----------------------------------
+		
+				@GetMapping("/rejectLeave/{id}/{status}")
+				public void rejectLeave(@PathVariable int id, @PathVariable String status) {
+					LeaveRequestDA da= new LeaveRequestDA(); 
+				
+					 da.rejectLeaveRequest(id,status);
+				}
 		
 		
 		

@@ -9,7 +9,9 @@ import { ControllerService } from 'src/app/service/controller.service';
 })
 export class LeaveRequestComponent implements OnInit {
 
-  constructor(private myservice:ControllerService) { }
+  constructor(private myservice:ControllerService) {
+   
+   }
 
   ngOnInit(): void {
   }
@@ -22,7 +24,7 @@ export class LeaveRequestComponent implements OnInit {
   employeeid:any;
 
   request:any;
-
+ 
   leaveRequest(){
     this.request=new Leave(null,this.fromDate,this.toDate,this.requestDate,this.description,this.status,this.employeeid);
     this.myservice.leaveRequest(this.request).subscribe(()=>{
@@ -32,6 +34,7 @@ export class LeaveRequestComponent implements OnInit {
       this.requestDate="";
       this.description="";
       this.status="";
+      this.employeeid="";
     });
   }
 

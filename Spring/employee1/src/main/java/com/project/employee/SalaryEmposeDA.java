@@ -13,8 +13,8 @@ public class SalaryEmposeDA extends MySqlConnection{
 	String salarybyid="select * from salary_empose where employeeId=?";
 	String salarybymonth="select * from salary_empose where month=? and year=?";
 	String allSalary="select * from salary_empose";
-	String salaryinput="insert into  salary_empose  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	String salaryUpdateStatement="UPDATE salary_empose SET `leave`=?, leaveNotPay=?, total=?, emposeDate=? WHERE id=?";
+	String salaryinput="insert into  salary_empose  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	String salaryUpdateStatement="UPDATE salary_empose SET present=?, absent=?, `leave`=?, totalAbsent=?, leaveNotPay=?, total=?, emposeDate=? WHERE id=?";
 	
 	
 	//============================Salary impose====================================
@@ -23,6 +23,7 @@ public class SalaryEmposeDA extends MySqlConnection{
 		int salaryId;
 		int absentcount;
 		int leaveCount;
+		int presentCount;
 		boolean check=false;
 		List<SalaryEmpose> checksalary=new ArrayList<>();
 //		int id;
@@ -37,8 +38,11 @@ public class SalaryEmposeDA extends MySqlConnection{
 			ps.setString(1, month);
 			ps.setInt(2, year);
 			rs=ps.executeQuery();
+//			public SalaryEmpose(int id, int employeeId, Double basic, Double house, Double communication, Double transport,
+//					Double medical, int present, int absent, int leave, int totalAbsent, Double leaveNotPay, Double bonous,
+//					Double total, String month, int year, Date emposeDate)
 			while (rs.next()) {
-				checksalary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getDouble(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12),rs.getInt(13), rs.getDate(14)));
+				checksalary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getInt(9),rs.getInt(10),rs.getInt(11),rs.getDouble(12),rs.getDouble(13),rs.getDouble(14),rs.getString(15),rs.getInt(16), rs.getDate(17)));
 				
 			}
 			  rs=ps.executeQuery();
@@ -65,8 +69,10 @@ public class SalaryEmposeDA extends MySqlConnection{
 				for(int i=0;i<allSalary.size();i++) {
 					absentcount=0;
 					leaveCount=0;
+					presentCount=0;
 					absent=null;
 					absent=attendanceDA.MakeAbsenttReport(allSalary.get(i).getEmployeeId(),month,String.valueOf(year));
+					presentCount=absent.get(0);
 					absentcount=absent.get(1);
 					leaveCount=absent.get(2);
 					for(int j=0;j<checksalary.size();j++) {
@@ -90,21 +96,26 @@ public class SalaryEmposeDA extends MySqlConnection{
 							 System.out.println("leave Not Pay -> " + leaveNotPay);
 								double bonous=0;
 								double total=allSalary.get(i).getBasic()+house+communication+transport+medical-leaveNotPay;
-								ps.setInt(1, leave);
-								ps.setDouble(2, leaveNotPay);
-								ps.setDouble(3, total);
-								ps.setDate(4, date);
-								ps.setInt(5, checksalary.get(k).getId());
+//String salaryUpdateStatement="UPDATE salary_empose SET present=?, absent=?, `leave`=?, totalAbsent=?, leaveNotPay=?, total=?, emposeDate=? WHERE id=?";
+								
+								ps.setInt(1, presentCount);
+								ps.setInt(2, absentcount);
+								ps.setInt(3, leaveCount);
+								ps.setInt(4, leave);
+								ps.setDouble(5, leaveNotPay);
+								ps.setDouble(6, total);
+								ps.setDate(7, date);
+								ps.setInt(8, checksalary.get(k).getId());
 								ps.executeUpdate();
 							}
-//							ps.close();
+							
 								
 							}
 						}
-							
+					
 					}
 					
-					
+				ps.close();	
 			}catch(Exception e) {
 				
 				System.out.println("if exception "+e);
@@ -148,11 +159,14 @@ public class SalaryEmposeDA extends MySqlConnection{
 				}
 				absentcount=0;
 				leaveCount=0;
+				presentCount=0;
 				absent=null;
 				absent=attendanceDA.MakeAbsenttReport(allSalary.get(i).getEmployeeId(),month,String.valueOf(year));
 //				System.out.println("Absent Data -> "+ absent);
+				presentCount=absent.get(0);
 				absentcount=absent.get(1);
 				leaveCount=absent.get(2);
+				System.out.println("Present -> "+presentCount);
 				System.out.println("Absent -> "+absentcount);
 				System.out.println("Leave -> "+leaveCount);
 				for(int j=0;j<absent.size();j++) {
@@ -192,17 +206,16 @@ public class SalaryEmposeDA extends MySqlConnection{
 				ps.setDouble(5, communication);
 				ps.setDouble(6, transport);
 				ps.setDouble(7, medical);
-				ps.setInt(8, leave);
-				ps.setDouble(9, leaveNotPay);
-				ps.setDouble(10,bonous);
-				ps.setDouble(11, total);
-				
-				ps.setString(12,month);
-				ps.setInt(13,year);
-				
-		
-				
-				ps.setDate(14, date);
+				ps.setInt(8, presentCount);
+				ps.setInt(9, absentcount);
+				ps.setInt(10, leaveCount);
+				ps.setInt(11, leave);
+				ps.setDouble(12, leaveNotPay);
+				ps.setDouble(13,bonous);
+				ps.setDouble(14, total);
+				ps.setString(15,month);
+				ps.setInt(16,year);
+				ps.setDate(17, date);
 				System.out.println(date);
 				System.out.println("Works before");
 				ps.executeUpdate();
@@ -237,8 +250,11 @@ List<SalaryEmpose> salary=new ArrayList<>();
 			ps.setString(1, month);
 			ps.setInt(2, year);
 			rs=ps.executeQuery();
+//			public SalaryEmpose(int id, int employeeId, Double basic, Double house, Double communication, Double transport,
+//			Double medical, int present, int absent, int leave, int totalAbsent, Double leaveNotPay, Double bonous,
+//			Double total, String month, int year, Date emposeDate)
 			while (rs.next()) {
-				salary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getDouble(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12),rs.getInt(13), rs.getDate(14)));
+				salary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getInt(9),rs.getInt(10),rs.getInt(11),rs.getDouble(12),rs.getDouble(13),rs.getDouble(14),rs.getString(15),rs.getInt(16), rs.getDate(17)));
 				
 			}
 			
@@ -256,8 +272,11 @@ List<SalaryEmpose> allsalary=new ArrayList<>();
 			con=DriverManager.getConnection(url,user,pass);
 			ps=con.prepareStatement(allSalary);
 			rs=ps.executeQuery();
+//			public SalaryEmpose(int id, int employeeId, Double basic, Double house, Double communication, Double transport,
+//			Double medical, int present, int absent, int leave, int totalAbsent, Double leaveNotPay, Double bonous,
+//			Double total, String month, int year, Date emposeDate)
 			while (rs.next()) {
-				salary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getDouble(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12),rs.getInt(13), rs.getDate(14)));
+				salary.add(new SalaryEmpose(rs.getInt(1),rs.getInt(2),rs.getDouble(3),rs.getDouble(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getInt(8),rs.getInt(9),rs.getInt(10),rs.getInt(11),rs.getDouble(12),rs.getDouble(13),rs.getDouble(14),rs.getString(15),rs.getInt(16), rs.getDate(17)));
 				
 			}
 			

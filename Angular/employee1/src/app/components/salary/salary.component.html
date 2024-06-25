@@ -137,7 +137,7 @@
             <button type="submit" class="btn btn-outline-success me-3 mt-5" (click)="printsalary()">Print</button>
           </div>
         </div>
-        <table>
+        <table class="table table-bordered table-hover table-striped">
           <thead>
                 <tr >
                   <th scope="col" style="width: 10rem;">Employee Id</th>
@@ -149,8 +149,11 @@
                   <th scope="col" style="width: 10rem;">Transport 5%</th>
                   <!-- <th scope="col" style="width: 10rem;">Transport 5%</th> -->
                   <th scope="col" style="width: 10rem;">medical 3%</th>
+                  <th scope="col" style="width: 10rem;">Present</th>
+                  <th scope="col" style="width: 10rem;">Leave</th>
+                  <th scope="col" style="width: 10rem;">Absent</th>
                   <th scope="col" style="width: 10rem;">Total Absent</th>
-                  <th scope="col" style="width: 10rem;">Absent Ammount</th>
+                  <th scope="col" style="width: 10rem;"><abbr>NP</abbr> Ammount</th>
                   <th scope="col" style="width: 10rem;">Bonous</th>
                   <th scope="col" style="width: 10rem;">Total Salary</th>
                   <th scope="col" style="width: 10rem;">Empose Date</th>
@@ -167,7 +170,10 @@
               <td> {{i.communication | number: '.0-2'}} </td>
               <td> {{i.transport | number: '.0-2'}} </td>
               <td> {{i.medical | number: '.0-2'}} </td>
+              <td> {{i.present}} </td>
               <td> {{i.leave}} </td>
+              <td> {{i.absent}} </td>
+              <td> {{i.totalAbsent}} </td>
               <td> {{i.leaveNotPay | number: '.0-2'}} </td>
               <td> {{i.bonous | number: '.0-2'}} </td>
               <td> {{i.total | number: '.0-2'}} </td>

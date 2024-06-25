@@ -46,7 +46,7 @@ export class AttendanceComponent implements OnInit {
     // alert(this.attendanceDate);
     // this.day=this.attendanceDate.getDate();
     this.day="a"+this.attendanceDate.substring(8,10);
-    this.month=this.attendanceDate.substring(5,7);
+    this.month=this.attendanceDate.substring(5,7); 
     this.year=this.attendanceDate.substring(0,4);
     // alert("Day is : "+this.day);
     // alert("month is : "+this.month);

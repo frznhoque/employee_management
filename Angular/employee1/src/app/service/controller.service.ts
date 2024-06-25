@@ -136,6 +136,16 @@ public allleaveapplication():Observable<Leave>{
   return this.http.get<Leave>(this.url);
 }
 
+public allleaveapplicationstatus():Observable<Leave>{
+  this.url="http://localhost:8080/allrequestleavestatus";
+  return this.http.get<Leave>(this.url);
+}
+
+public rejectAccept(id:any,status:any):Observable<any>{
+  this.url="http://localhost:8080/rejectLeave/"+id+"/"+status;
+  return this.http.get<any>(this.url);
+}
+
 
 
 

@@ -1,0 +1,25 @@
+<div>
+    <h4 style="text-align: center;">All Request</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Employee Id</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <!--  constructor(requestId:any, fromDate:any,toDate:any,requestDate:any,description:any,status:any,employeeId:any) -->
+        <tr *ngFor="let i of allrequestlist">
+          <th scope="row">{{i.employeeId}}</th>
+          <td>{{i.fromDate}}</td>
+          <td>{{i.toDate}}</td>
+          <td>{{i.description}}</td>
+          <td>{{i.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
